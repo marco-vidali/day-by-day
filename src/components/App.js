@@ -1,17 +1,22 @@
+import React, { useEffect, useState } from "react";
+import Cookies from "js-cookie";
+
 import Header from "./Header";
 import GoalInput from "./GoalInput";
 import GoalList from "./GoalList";
-import { useEffect, useState } from "react";
 
 export default function App() {
   const [goals, setGoals] = useState([]);
 
   useEffect(() => {
-    setGoals(JSON.parse(localStorage.getItem("goals") || "[]"));
+    const savedGoals = Cookies.get("goals");
+    if (savedGoals) {
+      setGoals(JSON.parse(savedGoals));
+    }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("goals", JSON.stringify(goals));
+    Cookies.set("goals", JSON.stringify(goals));
   }, [goals]);
 
   function handleAddGoal(e, description) {
