@@ -16,7 +16,7 @@ export default function Goal({
         {children}
       </span>
       <button
-        class="btn btn-sm btn-circle btn-ghost text-primary"
+        className="btn btn-sm btn-circle btn-ghost text-primary"
         onClick={() => {
           onDeleteGoal(id);
         }}

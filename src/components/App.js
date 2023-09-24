@@ -1,10 +1,18 @@
 import Header from "./Header";
 import GoalInput from "./GoalInput";
 import GoalList from "./GoalList";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function App() {
   const [goals, setGoals] = useState([]);
+
+  useEffect(() => {
+    setGoals(JSON.parse(localStorage.getItem("goals") || "[]"));
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("goals", JSON.stringify(goals));
+  }, [goals]);
 
   function handleAddGoal(e, description) {
     e.preventDefault();
@@ -29,7 +37,7 @@ export default function App() {
   }
 
   function handleDeleteGoal(id) {
-    setGoals((goals) => goals.filter((goal) => goal.id !== id));
+    setGoals((goals) => goals.filter((goal) => id !== goal.id));
   }
 
   return (
