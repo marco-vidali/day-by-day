@@ -24,11 +24,19 @@ export default function App() {
     );
   }
 
+  function handleDeleteGoal(id) {
+    setGoals((goals) => goals.filter((goal) => goal.id !== id));
+  }
+
   return (
     <div className="h-screen flex flex-col items-center bg-accent">
       <Header />
       <GoalInput onAddGoal={handleAddGoal} />
-      <GoalList goals={goals} onToggleGoal={handleToggleGoal} />
+      <GoalList
+        goals={goals}
+        onToggleGoal={handleToggleGoal}
+        onDeleteGoal={handleDeleteGoal}
+      />
     </div>
   );
 }

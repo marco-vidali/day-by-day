@@ -1,4 +1,10 @@
-export default function Goal({ id, done, onToggleGoal, children }) {
+export default function Goal({
+  id,
+  done,
+  onToggleGoal,
+  onDeleteGoal,
+  children,
+}) {
   return (
     <div className="flex gap-4 justify-center h-24 items-center">
       <span
@@ -9,7 +15,14 @@ export default function Goal({ id, done, onToggleGoal, children }) {
       >
         {children}
       </span>
-      <button class="btn btn-sm btn-circle btn-ghost text-primary">✕</button>
+      <button
+        class="btn btn-sm btn-circle btn-ghost text-primary"
+        onClick={() => {
+          onDeleteGoal(id);
+        }}
+      >
+        ✕
+      </button>
     </div>
   );
 }
