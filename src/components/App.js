@@ -8,11 +8,15 @@ export default function App() {
 
   function handleAddGoal(e, description) {
     e.preventDefault();
+
+    if (!description) return;
+
     const newGoal = {
       id: crypto.randomUUID(),
       description: description,
       done: false,
     };
+
     setGoals((goals) => [...goals, newGoal]);
   }
 
