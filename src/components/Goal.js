@@ -1,10 +1,11 @@
-export default function Goal({ id, done, children }) {
+export default function Goal({ id, done, onToggleGoal, children }) {
   return (
     <div className="flex gap-4 justify-center h-24 items-center">
       <span
         className={`cursor-pointer text-accent-content ${
           done ? "line-through" : ""
         }`}
+        onClick={() => onToggleGoal(id)}
       >
         {children}
       </span>
