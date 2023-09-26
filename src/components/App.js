@@ -10,9 +10,23 @@ export default function App() {
 
   useEffect(() => {
     const savedGoals = Cookies.get("goals");
+    const lastOpenedDate = Cookies.get("lastOpenedDate");
+    const currentDate = new Date().toLocaleDateString();
+
     if (savedGoals) {
       setGoals(JSON.parse(savedGoals));
     }
+
+    if (lastOpenedDate !== currentDate) {
+      setGoals((goals) =>
+        goals.map((goal) => ({
+          ...goal,
+          done: false,
+        }))
+      );
+    }
+
+    Cookies.set("lastOpenedDate", currentDate);
   }, []);
 
   useEffect(() => {
